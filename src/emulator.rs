@@ -225,7 +225,7 @@ impl Emulator {
       },
       (0xA, _, _, _) => {
         // I = nnn
-        let nnn: u16 = opcode & 0xFFF; 
+        let nnn = opcode & 0xFFF; 
         self.idx_reg = nnn;
       },
       (0xB, _, _, _) => {
@@ -237,7 +237,7 @@ impl Emulator {
         // VX = rand() & 0xnn
         let x = second as usize;
         let nn = (opcode & 0xFF) as u8;
-        let rand: u8 = random(); 
+        let rand: u8 = random::<u8>(); 
         self.var_reg[x] =  rand & nn;
       },
       (0xD, _, _, _) => {
@@ -276,7 +276,7 @@ impl Emulator {
           self.var_reg[0xF] = 0;
         }
       },
-      (0xE, 0, 9, 0xE) => {
+      (0xE, _, 9, 0xE) => {
         // Skip if key pressed
         let x = second as usize;
         let vx = self.var_reg[x]; 
@@ -328,7 +328,7 @@ impl Emulator {
       (0xF, _, 1, 0xE) => { 
         // I += vx
         let x = second as usize;
-        self.idx_reg += self.idx_reg.wrapping_add(self.var_reg[x] as u16);
+        self.idx_reg = self.idx_reg.wrapping_add(self.var_reg[x] as u16);
       },
       (0xF, _, 2, 9) => {
         // Set I to addr in font character of vx;

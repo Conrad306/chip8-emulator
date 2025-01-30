@@ -31,7 +31,7 @@ pub const FONT: [u8; FONT_SIZE] = [
 
 pub const SCREEN_WIDTH: usize = 64;
 pub const SCREEN_HEIGHT: usize = 32;
-pub const SCALE: u32 = 5;
+pub const SCALE: u32 = 15;
 pub const TICKS_PER_FRAME: i8 = 10;
 
 const WINDOW_WIDTH: u32 = (SCREEN_WIDTH as u32) * SCALE; 
